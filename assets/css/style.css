@@ -1,0 +1,35 @@
+/* CSS de la page d'accueil */
+body .jumbotron p {
+    line-height: 0.8;
+    font-size: 20px;
+}
+body .jumbotron h1 {
+    font-variant: small-caps;
+    line-height: 2;
+    font-size: 25px;
+}
+body .jumbotron {
+    background-color : rgba(144, 164, 174, 0.7);
+}
+.item {
+    height: 350px;
+}
+/* CSS du formulaire d'inscription */
+.container {
+    text-align: center;
+    line-height: 40px;
+}
+#inscription-title {
+    font-variant: small-caps;
+}
+label {
+    text-align: left;
+}
+#submit {
+    margin-top: 30px;
+}
+.formValid {
+    background-color: green;
+    text-align: center;
+    color: white;
+}

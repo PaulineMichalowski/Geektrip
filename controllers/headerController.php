@@ -6,4 +6,5 @@ if (isset($_GET['deconnexion'])) {
    header('location: index.php');
 exit; 
 }
-    
+$artworksMenu = new artworksTypes();
+$menuList = $artworksMenu->getArtworksTypes();

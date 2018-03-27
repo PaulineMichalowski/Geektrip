@@ -14,6 +14,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['userName'] = $userConnection->userName;
         $_SESSION['mail'] = $userConnection->mail;
         $_SESSION['id'] = $userConnection->id;
+        $_SESSION['idGroupUsers'] = $userConnection->idGroupUsers;
        $connectSuccess = true;
        header("Location: http://geektrip/profile.php");
     }

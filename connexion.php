@@ -7,7 +7,7 @@ include_once 'controllers/connexionController.php';
 <body>
     <div class="container">
         <div>
-            <h2 id='inscription-title'>Connexion</h2>
+            <h2 id='forms-title'>Connexion</h2>
             <p>Connecte toi pour avoir accès à du contenu personnalisé</p>
         </div>
         <form action="#" method="POST" class="form-group-lg">

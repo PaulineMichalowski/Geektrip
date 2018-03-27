@@ -9,8 +9,7 @@ include_once 'controllers/inscriptionController.php';
 <body>
     <div class="container">
         <div>
-            <h2 id='inscription-title'>Inscription</h2>
-            <p>N'hésite pas à t'inscrire pour découvrir des offres personnalisées en fonction de tes habitudes.</p>
+            <h2 id='forms-title'>Inscription</h2>
         </div>
         <div>
             <?php foreach ($formError as $Error) { ?>

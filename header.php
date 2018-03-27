@@ -2,17 +2,26 @@
 session_start();
 include_once 'models/dataBase.php';
 include_once 'models/users.php';
+include_once 'models/artworksTypes.php';
 include_once 'controllers/headerController.php';
-include_once 'controllers/connexionController.php';
-include_once 'controllers/inscriptionController.php';
-include_once 'controllers/profileController.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-            
+        <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+        <script src="https://cloud.tinymce.com/stable/plugins.min.js?apiKey=jjebv96xih9h6cueaeqos4jq7fpt3jcjpvsjm244gve2k1s8"></script>
+        <script>
+         tinymce.init({
+            selector: 'textarea',
+            height: 500,
+            theme: 'modern',
+            plugins: [
+               'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+               'tinymcespellchecker']
+         });
+      </script>
         <link rel="stylesheet" href="assets/css/style.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -33,9 +42,11 @@ include_once 'controllers/profileController.php';
                         <li class="active"><a href="index.php">Accueil</a></li>
                         <li><a href="#">En ce moment</a></li>
                         <li><a href="#">Périodes</a></li>
-                        <li><a href="#">Jeux</a></li>
-                        <li><a href="#">Films</a></li>
-                        <li><a href="#">Séries</a></li>
+                        <?php
+                        foreach ($menuList as $menu){
+                        ?>
+                        <li><a href="#"><?= $menu->name?></a></li>
+                        <?php } ?>
                         <li><a href="#">Blog</a></li>
                     </ul>
                     <!-- Barre de recherche dans la barre de navigation, avec un logo en guise de bouton submit -->
@@ -54,8 +65,15 @@ include_once 'controllers/profileController.php';
                         <?php 
                         if (isset($_SESSION['userName'])) {
                         ?>
-                        <li><a href="profile.php"><?= $_SESSION['userName']; ?></a></li>
-                        <li><a href="?deconnexion=true">Déconnexion</a></li>
+                        <li class="dropdown"><a data-toggle="dropdown" role="button" aria-haspopup="true" href="profile.php" ><?= $_SESSION['userName']; ?><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <?php if($_SESSION['idGroupUsers'] == 1){ ?>
+                                <li><a href="writePapers.php">Ecrire un article</a></li>
+                                <?php } ?>
+                                <li><a href="?deconnexion=true">Déconnexion</a></li>
+                            </ul>
+                        </li>
+                        
                         <?php
                         } else {
                             ?>

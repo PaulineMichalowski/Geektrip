@@ -9,13 +9,14 @@ class users extends dataBase {
     public $mail = '';
     public $userName = '';
     public $password = '';
+    public $idGroupUsers = 2;
     public function __construct() {
         parent::__construct();
         $this->db;
     }
     public function addUser() {
         //On prépare la requête sql qui insert dans les champs selectionnés, les valeurs sont des marqueurs nominatifs
-        $query = 'INSERT INTO `users`(`lastname`, `firstname`, `birthdate`, `mail`, `userName`, `password`) VALUES(:lastname, :firstname, :birthdate, :mail, :userName, :password)';
+        $query = 'INSERT INTO `users`(`lastname`, `firstname`, `birthdate`, `mail`, `userName`, `password`, `idGroupUsers`) VALUES(:lastname, :firstname, :birthdate, :mail, :userName, :password, :idGroupUsers)';
         $responseRequest = $this->db->prepare($query);
         $responseRequest->bindValue(':lastname', $this->lastname, PDO::PARAM_STR);
         $responseRequest->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
@@ -23,6 +24,7 @@ class users extends dataBase {
         $responseRequest->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $responseRequest->bindValue(':userName', $this->userName, PDO::PARAM_STR);
         $responseRequest->bindValue(':password', $this->password, PDO::PARAM_STR);
+        $responseRequest->bindValue(':idGroupUsers', $this->idGroupUsers, PDO::PARAM_INT);
         //Si l'insertion s'est correctement déroulée on l'éxecute
         return $responseRequest->execute();
     }
@@ -43,22 +45,35 @@ class users extends dataBase {
        return $isOk;
         }
         public function getUserProfile() {
-            $query = 'SELECT `id`, `lastname`, `firstname`, DATE_FORMAT(`birthdate`, \'%d/%m/%Y\') AS `birthdate`, `mail`, `userName` FROM `users` WHERE `id` = :id';
+            $query = 'SELECT `id`, `lastname`, `firstname`, `birthdate`, `mail`, `userName`, `idGroupUsers` FROM `users` WHERE `id` = :id';
             $responseRequest = $this->db->prepare($query);
-            $responseRequest->bindValue(':id', $this->id, PDO::PARAM_STR);
+            $responseRequest->bindValue(':id', $this->id, PDO::PARAM_INT);
             if ($responseRequest->execute()) {
                 $result = $responseRequest->fetch(PDO::FETCH_OBJ);
                 if (is_object($result)) {
                     $this->lastname = $result->lastname;
                     $this->firstname = $result->firstname;
                     $this->birthdate = $result->birthdate;
+                    $this->idGroupUsers = $result->idGroupUsers;
                 }
             }
-         return $isOk;
      }
      public function modifyUser() {
-         $query = 'UPDATE `users` SET `lastname` = :lastname, `firstname` = :firstname, `userName` = :userName WHERE `id` = :id';
+         $query = 'UPDATE `users` SET `lastname` = :lastname, `firstname` = :firstname, `userName` = :userName, `mail` = :mail, `birthdate` = :birthdate WHERE `id` = :id';
          $responseRequest = $this->db->prepare($query);
+         $responseRequest->bindValue(':id', $this->id, PDO::PARAM_INT);
+         $responseRequest->bindValue(':lastname', $this->lastname, PDO::PARAM_STR);
+         $responseRequest->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
+         $responseRequest->bindValue(':userName', $this->userName, PDO::PARAM_STR);
+         $responseRequest->bindValue(':birthdate', $this->birthdate, PDO::PARAM_STR);
+         $responseRequest->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+        return $responseRequest->execute();
+     }
+     public function deleteUser() {
+         $query = 'DELETE FROM `users` WHERE `id` = :id';
+         $responseRequest = $this->db->prepare($query);
+         $responseRequest->bindValue(':id', $this->id, PDO::PARAM_INT);
+         return $responseRequest->execute();
      }
      public function __destruct() {
         parent::__destruct();

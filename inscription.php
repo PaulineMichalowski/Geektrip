@@ -4,6 +4,7 @@ include_once 'header.php';
 // J'inclue ensuite mes models, ici dataBase et users, parente et enfant. L'inclusion de dataBase permet de se connecter à la base de données, et users.php fait appel aux méthodes.
 include_once 'models/dataBase.php';
 include_once 'models/users.php';
+// J'inclue le controlleur qui permet d'executer la méthode qui interagira ici, dans la vue.
 include_once 'controllers/inscriptionController.php';
 ?>
 <body>
@@ -31,12 +32,6 @@ include_once 'controllers/inscriptionController.php';
                 <p><input name="submit" id="submit" type="submit" value="Valider" /></p>
             </div>
         </form>
-                <?php
-                if ($insertSuccess) { ?>
-        <div class="formValid col-lg-offset-5 col-lg-2">
-                   <?php echo 'Inscription réussie';
-                } ?>
-        </div>
     </div>
 </body>
 </html>

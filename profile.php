@@ -1,7 +1,5 @@
 <?php 
 include_once 'header.php';
-include_once 'models/dataBase.php';
-include_once 'models/users.php';
 include_once 'controllers/profileController.php';
     ?>
 <div class="container">
@@ -21,3 +19,4 @@ include_once 'controllers/profileController.php';
 </div>
 <?php
 }
+?>

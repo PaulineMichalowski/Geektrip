@@ -20,11 +20,5 @@ include_once 'controllers/writePapersController.php';
                 <p><input name="submit" id="submit" type="submit" value="Envoyer pour validation" /></p>
             </div>
         </form>
-        <?php
-                if ($insertSuccess) { 
-                    ?>
-        <div class="formValid col-lg-offset-5 col-lg-2">
-                   <?php echo 'Inscription réussie';
-                } ?>
         </div>
     </body>

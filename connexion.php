@@ -19,12 +19,10 @@ include_once 'controllers/connexionController.php';
                 <p><input name="submit" id="submit" type="submit" value="Valider" /></p>
             </div>
         </form>
-        <p>
                 <?php
                 if ($connectSuccess) { ?>
         <div class="formValid col-lg-offset-5 col-lg-2">
                    <?php echo 'Vous êtes connecté(e) !';
                 } ?>
         </div>
-    </p>
     

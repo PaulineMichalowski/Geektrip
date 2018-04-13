@@ -69,6 +69,7 @@ include_once 'controllers/headerController.php';
                             <ul class="dropdown-menu">
                                 <?php if($_SESSION['idGroupUsers'] == 1){ ?>
                                 <li><a href="writePapers.php">Ecrire un article</a></li>
+                                <li><a href="listPapers.php">Afficher les articles</a></li>
                                 <?php } ?>
                                 <li><a href="?deconnexion=true">Déconnexion</a></li>
                             </ul>

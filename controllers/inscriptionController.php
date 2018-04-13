@@ -3,7 +3,7 @@
  * On instancie l'objet patients
  * On crée toutes les regex afin de sécuriser le formulaire
  * Puis on vérifie que toutes les variables $_POST existent
- * Puis on assigne la valeur des $_POST dans les attributs de l'objet patients
+ * Et on assigne la valeur des $_POST dans les attributs de l'objet patients
  */
 $users = new users();
 $regName = '#^[A-Z]{1}[a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]+[-\']?[a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ]+$#';
@@ -55,8 +55,10 @@ if (isset($_POST['submit']) && count($formError) == 0) {
         $users->mail = '';
         $users->userName = '';
         $users->password = '';
+        // Si l'insertion est un succès, on redirige l'utilisateur vers cette page
         header("Location: http://geektrip/connexion.php");
     } else {
+        // Si non, on affiche un message d'erreur.
         $formError['add'] = 'Erreur lors de l\'ajout';
     }
 }

@@ -5,9 +5,9 @@ if (isset($_POST['submit'])) {
     $formError = array();
     $sendPapers->title = $_POST['title'];
     $sendPapers->content = $_POST['content'];
-if ($sendPapers->sendPapers()) {
-    $insertSuccess = true;
-    } else {
-        $formError['add'] = 'Erreur lors de l\'ajout';
+        if ($sendPapers->sendPapers()) {
+            $insertSuccess = true;
+        } else {
+            $formError['add'] = 'Erreur lors de l\'ajout';
     }
 }
